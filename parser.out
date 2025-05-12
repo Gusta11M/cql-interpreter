@@ -1,0 +1,1073 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> instrucoes
+Rule 2     instrucoes -> instrucoes instrucao
+Rule 3     instrucoes -> instrucao
+Rule 4     instrucao -> inst_import ;
+Rule 5     instrucao -> inst_export ;
+Rule 6     instrucao -> inst_discard ;
+Rule 7     instrucao -> inst_rename ;
+Rule 8     instrucao -> inst_print ;
+Rule 9     instrucao -> inst_select ;
+Rule 10    instrucao -> inst_create ;
+Rule 11    instrucao -> inst_procedure
+Rule 12    instrucao -> inst_call ;
+Rule 13    inst_import -> IMPORT TABLE ID FROM STRING
+Rule 14    inst_export -> EXPORT TABLE ID AS STRING
+Rule 15    inst_discard -> DISCARD TABLE ID
+Rule 16    inst_rename -> RENAME TABLE ID ID
+Rule 17    inst_print -> PRINT TABLE ID
+Rule 18    inst_select -> SELECT list_select FROM ID opt_where opt_limit
+Rule 19    list_select -> *
+Rule 20    list_select -> list_column
+Rule 21    list_column -> list_column , ID
+Rule 22    list_column -> ID
+Rule 23    opt_where -> WHERE condicao
+Rule 24    opt_where -> empty
+Rule 25    opt_limit -> LIMIT NUMBER
+Rule 26    opt_limit -> empty
+Rule 27    condicao -> ID op NUMBER
+Rule 28    condicao -> condicao AND condicao
+Rule 29    op -> =
+Rule 30    op -> NE
+Rule 31    op -> <
+Rule 32    op -> >
+Rule 33    op -> LE
+Rule 34    op -> GE
+Rule 35    inst_create -> CREATE TABLE ID inst_select
+Rule 36    inst_create -> CREATE TABLE ID FROM ID JOIN ID USING ( ID )
+Rule 37    inst_join -> JOIN ID USING ( ID )
+Rule 38    inst_procedure -> PROCEDURE ID DO instrucoes END
+Rule 39    inst_call -> CALL ID
+Rule 40    empty -> <empty>
+
+Terminals, with rules where they appear
+
+(                    : 36 37
+)                    : 36 37
+*                    : 19
+,                    : 21
+;                    : 4 5 6 7 8 9 10 12
+<                    : 31
+=                    : 29
+>                    : 32
+AND                  : 28
+AS                   : 14
+CALL                 : 39
+CREATE               : 35 36
+DISCARD              : 15
+DO                   : 38
+END                  : 38
+EXPORT               : 14
+FROM                 : 13 18 36
+GE                   : 34
+ID                   : 13 14 15 16 16 17 18 21 22 27 35 36 36 36 36 37 37 38 39
+IMPORT               : 13
+JOIN                 : 36 37
+LE                   : 33
+LIMIT                : 25
+NE                   : 30
+NUMBER               : 25 27
+PRINT                : 17
+PROCEDURE            : 38
+RENAME               : 16
+SELECT               : 18
+STRING               : 13 14
+TABLE                : 13 14 15 16 17 35 36
+USING                : 36 37
+WHERE                : 23
+error                : 
+
+Nonterminals, with rules where they appear
+
+condicao             : 23 28 28
+empty                : 24 26
+inst_call            : 12
+inst_create          : 10
+inst_discard         : 6
+inst_export          : 5
+inst_import          : 4
+inst_join            : 
+inst_print           : 8
+inst_procedure       : 11
+inst_rename          : 7
+inst_select          : 9 35
+instrucao            : 2 3
+instrucoes           : 1 2 38
+list_column          : 20 21
+list_select          : 18
+op                   : 27
+opt_limit            : 18
+opt_where            : 18
+programa             : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . instrucoes
+    (2) instrucoes -> . instrucoes instrucao
+    (3) instrucoes -> . instrucao
+    (4) instrucao -> . inst_import ;
+    (5) instrucao -> . inst_export ;
+    (6) instrucao -> . inst_discard ;
+    (7) instrucao -> . inst_rename ;
+    (8) instrucao -> . inst_print ;
+    (9) instrucao -> . inst_select ;
+    (10) instrucao -> . inst_create ;
+    (11) instrucao -> . inst_procedure
+    (12) instrucao -> . inst_call ;
+    (13) inst_import -> . IMPORT TABLE ID FROM STRING
+    (14) inst_export -> . EXPORT TABLE ID AS STRING
+    (15) inst_discard -> . DISCARD TABLE ID
+    (16) inst_rename -> . RENAME TABLE ID ID
+    (17) inst_print -> . PRINT TABLE ID
+    (18) inst_select -> . SELECT list_select FROM ID opt_where opt_limit
+    (35) inst_create -> . CREATE TABLE ID inst_select
+    (36) inst_create -> . CREATE TABLE ID FROM ID JOIN ID USING ( ID )
+    (38) inst_procedure -> . PROCEDURE ID DO instrucoes END
+    (39) inst_call -> . CALL ID
+
+    IMPORT          shift and go to state 13
+    EXPORT          shift and go to state 14
+    DISCARD         shift and go to state 15
+    RENAME          shift and go to state 16
+    PRINT           shift and go to state 17
+    SELECT          shift and go to state 18
+    CREATE          shift and go to state 19
+    PROCEDURE       shift and go to state 20
+    CALL            shift and go to state 21
+
+    programa                       shift and go to state 1
+    instrucoes                     shift and go to state 2
+    instrucao                      shift and go to state 3
+    inst_import                    shift and go to state 4
+    inst_export                    shift and go to state 5
+    inst_discard                   shift and go to state 6
+    inst_rename                    shift and go to state 7
+    inst_print                     shift and go to state 8
+    inst_select                    shift and go to state 9
+    inst_create                    shift and go to state 10
+    inst_procedure                 shift and go to state 11
+    inst_call                      shift and go to state 12
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> instrucoes .
+    (2) instrucoes -> instrucoes . instrucao
+    (4) instrucao -> . inst_import ;
+    (5) instrucao -> . inst_export ;
+    (6) instrucao -> . inst_discard ;
+    (7) instrucao -> . inst_rename ;
+    (8) instrucao -> . inst_print ;
+    (9) instrucao -> . inst_select ;
+    (10) instrucao -> . inst_create ;
+    (11) instrucao -> . inst_procedure
+    (12) instrucao -> . inst_call ;
+    (13) inst_import -> . IMPORT TABLE ID FROM STRING
+    (14) inst_export -> . EXPORT TABLE ID AS STRING
+    (15) inst_discard -> . DISCARD TABLE ID
+    (16) inst_rename -> . RENAME TABLE ID ID
+    (17) inst_print -> . PRINT TABLE ID
+    (18) inst_select -> . SELECT list_select FROM ID opt_where opt_limit
+    (35) inst_create -> . CREATE TABLE ID inst_select
+    (36) inst_create -> . CREATE TABLE ID FROM ID JOIN ID USING ( ID )
+    (38) inst_procedure -> . PROCEDURE ID DO instrucoes END
+    (39) inst_call -> . CALL ID
+
+    $end            reduce using rule 1 (programa -> instrucoes .)
+    IMPORT          shift and go to state 13
+    EXPORT          shift and go to state 14
+    DISCARD         shift and go to state 15
+    RENAME          shift and go to state 16
+    PRINT           shift and go to state 17
+    SELECT          shift and go to state 18
+    CREATE          shift and go to state 19
+    PROCEDURE       shift and go to state 20
+    CALL            shift and go to state 21
+
+    instrucao                      shift and go to state 22
+    inst_import                    shift and go to state 4
+    inst_export                    shift and go to state 5
+    inst_discard                   shift and go to state 6
+    inst_rename                    shift and go to state 7
+    inst_print                     shift and go to state 8
+    inst_select                    shift and go to state 9
+    inst_create                    shift and go to state 10
+    inst_procedure                 shift and go to state 11
+    inst_call                      shift and go to state 12
+
+state 3
+
+    (3) instrucoes -> instrucao .
+
+    IMPORT          reduce using rule 3 (instrucoes -> instrucao .)
+    EXPORT          reduce using rule 3 (instrucoes -> instrucao .)
+    DISCARD         reduce using rule 3 (instrucoes -> instrucao .)
+    RENAME          reduce using rule 3 (instrucoes -> instrucao .)
+    PRINT           reduce using rule 3 (instrucoes -> instrucao .)
+    SELECT          reduce using rule 3 (instrucoes -> instrucao .)
+    CREATE          reduce using rule 3 (instrucoes -> instrucao .)
+    PROCEDURE       reduce using rule 3 (instrucoes -> instrucao .)
+    CALL            reduce using rule 3 (instrucoes -> instrucao .)
+    $end            reduce using rule 3 (instrucoes -> instrucao .)
+    END             reduce using rule 3 (instrucoes -> instrucao .)
+
+
+state 4
+
+    (4) instrucao -> inst_import . ;
+
+    ;               shift and go to state 23
+
+
+state 5
+
+    (5) instrucao -> inst_export . ;
+
+    ;               shift and go to state 24
+
+
+state 6
+
+    (6) instrucao -> inst_discard . ;
+
+    ;               shift and go to state 25
+
+
+state 7
+
+    (7) instrucao -> inst_rename . ;
+
+    ;               shift and go to state 26
+
+
+state 8
+
+    (8) instrucao -> inst_print . ;
+
+    ;               shift and go to state 27
+
+
+state 9
+
+    (9) instrucao -> inst_select . ;
+
+    ;               shift and go to state 28
+
+
+state 10
+
+    (10) instrucao -> inst_create . ;
+
+    ;               shift and go to state 29
+
+
+state 11
+
+    (11) instrucao -> inst_procedure .
+
+    IMPORT          reduce using rule 11 (instrucao -> inst_procedure .)
+    EXPORT          reduce using rule 11 (instrucao -> inst_procedure .)
+    DISCARD         reduce using rule 11 (instrucao -> inst_procedure .)
+    RENAME          reduce using rule 11 (instrucao -> inst_procedure .)
+    PRINT           reduce using rule 11 (instrucao -> inst_procedure .)
+    SELECT          reduce using rule 11 (instrucao -> inst_procedure .)
+    CREATE          reduce using rule 11 (instrucao -> inst_procedure .)
+    PROCEDURE       reduce using rule 11 (instrucao -> inst_procedure .)
+    CALL            reduce using rule 11 (instrucao -> inst_procedure .)
+    $end            reduce using rule 11 (instrucao -> inst_procedure .)
+    END             reduce using rule 11 (instrucao -> inst_procedure .)
+
+
+state 12
+
+    (12) instrucao -> inst_call . ;
+
+    ;               shift and go to state 30
+
+
+state 13
+
+    (13) inst_import -> IMPORT . TABLE ID FROM STRING
+
+    TABLE           shift and go to state 31
+
+
+state 14
+
+    (14) inst_export -> EXPORT . TABLE ID AS STRING
+
+    TABLE           shift and go to state 32
+
+
+state 15
+
+    (15) inst_discard -> DISCARD . TABLE ID
+
+    TABLE           shift and go to state 33
+
+
+state 16
+
+    (16) inst_rename -> RENAME . TABLE ID ID
+
+    TABLE           shift and go to state 34
+
+
+state 17
+
+    (17) inst_print -> PRINT . TABLE ID
+
+    TABLE           shift and go to state 35
+
+
+state 18
+
+    (18) inst_select -> SELECT . list_select FROM ID opt_where opt_limit
+    (19) list_select -> . *
+    (20) list_select -> . list_column
+    (21) list_column -> . list_column , ID
+    (22) list_column -> . ID
+
+    *               shift and go to state 38
+    ID              shift and go to state 37
+
+    list_select                    shift and go to state 36
+    list_column                    shift and go to state 39
+
+state 19
+
+    (35) inst_create -> CREATE . TABLE ID inst_select
+    (36) inst_create -> CREATE . TABLE ID FROM ID JOIN ID USING ( ID )
+
+    TABLE           shift and go to state 40
+
+
+state 20
+
+    (38) inst_procedure -> PROCEDURE . ID DO instrucoes END
+
+    ID              shift and go to state 41
+
+
+state 21
+
+    (39) inst_call -> CALL . ID
+
+    ID              shift and go to state 42
+
+
+state 22
+
+    (2) instrucoes -> instrucoes instrucao .
+
+    IMPORT          reduce using rule 2 (instrucoes -> instrucoes instrucao .)
+    EXPORT          reduce using rule 2 (instrucoes -> instrucoes instrucao .)
+    DISCARD         reduce using rule 2 (instrucoes -> instrucoes instrucao .)
+    RENAME          reduce using rule 2 (instrucoes -> instrucoes instrucao .)
+    PRINT           reduce using rule 2 (instrucoes -> instrucoes instrucao .)
+    SELECT          reduce using rule 2 (instrucoes -> instrucoes instrucao .)
+    CREATE          reduce using rule 2 (instrucoes -> instrucoes instrucao .)
+    PROCEDURE       reduce using rule 2 (instrucoes -> instrucoes instrucao .)
+    CALL            reduce using rule 2 (instrucoes -> instrucoes instrucao .)
+    $end            reduce using rule 2 (instrucoes -> instrucoes instrucao .)
+    END             reduce using rule 2 (instrucoes -> instrucoes instrucao .)
+
+
+state 23
+
+    (4) instrucao -> inst_import ; .
+
+    IMPORT          reduce using rule 4 (instrucao -> inst_import ; .)
+    EXPORT          reduce using rule 4 (instrucao -> inst_import ; .)
+    DISCARD         reduce using rule 4 (instrucao -> inst_import ; .)
+    RENAME          reduce using rule 4 (instrucao -> inst_import ; .)
+    PRINT           reduce using rule 4 (instrucao -> inst_import ; .)
+    SELECT          reduce using rule 4 (instrucao -> inst_import ; .)
+    CREATE          reduce using rule 4 (instrucao -> inst_import ; .)
+    PROCEDURE       reduce using rule 4 (instrucao -> inst_import ; .)
+    CALL            reduce using rule 4 (instrucao -> inst_import ; .)
+    $end            reduce using rule 4 (instrucao -> inst_import ; .)
+    END             reduce using rule 4 (instrucao -> inst_import ; .)
+
+
+state 24
+
+    (5) instrucao -> inst_export ; .
+
+    IMPORT          reduce using rule 5 (instrucao -> inst_export ; .)
+    EXPORT          reduce using rule 5 (instrucao -> inst_export ; .)
+    DISCARD         reduce using rule 5 (instrucao -> inst_export ; .)
+    RENAME          reduce using rule 5 (instrucao -> inst_export ; .)
+    PRINT           reduce using rule 5 (instrucao -> inst_export ; .)
+    SELECT          reduce using rule 5 (instrucao -> inst_export ; .)
+    CREATE          reduce using rule 5 (instrucao -> inst_export ; .)
+    PROCEDURE       reduce using rule 5 (instrucao -> inst_export ; .)
+    CALL            reduce using rule 5 (instrucao -> inst_export ; .)
+    $end            reduce using rule 5 (instrucao -> inst_export ; .)
+    END             reduce using rule 5 (instrucao -> inst_export ; .)
+
+
+state 25
+
+    (6) instrucao -> inst_discard ; .
+
+    IMPORT          reduce using rule 6 (instrucao -> inst_discard ; .)
+    EXPORT          reduce using rule 6 (instrucao -> inst_discard ; .)
+    DISCARD         reduce using rule 6 (instrucao -> inst_discard ; .)
+    RENAME          reduce using rule 6 (instrucao -> inst_discard ; .)
+    PRINT           reduce using rule 6 (instrucao -> inst_discard ; .)
+    SELECT          reduce using rule 6 (instrucao -> inst_discard ; .)
+    CREATE          reduce using rule 6 (instrucao -> inst_discard ; .)
+    PROCEDURE       reduce using rule 6 (instrucao -> inst_discard ; .)
+    CALL            reduce using rule 6 (instrucao -> inst_discard ; .)
+    $end            reduce using rule 6 (instrucao -> inst_discard ; .)
+    END             reduce using rule 6 (instrucao -> inst_discard ; .)
+
+
+state 26
+
+    (7) instrucao -> inst_rename ; .
+
+    IMPORT          reduce using rule 7 (instrucao -> inst_rename ; .)
+    EXPORT          reduce using rule 7 (instrucao -> inst_rename ; .)
+    DISCARD         reduce using rule 7 (instrucao -> inst_rename ; .)
+    RENAME          reduce using rule 7 (instrucao -> inst_rename ; .)
+    PRINT           reduce using rule 7 (instrucao -> inst_rename ; .)
+    SELECT          reduce using rule 7 (instrucao -> inst_rename ; .)
+    CREATE          reduce using rule 7 (instrucao -> inst_rename ; .)
+    PROCEDURE       reduce using rule 7 (instrucao -> inst_rename ; .)
+    CALL            reduce using rule 7 (instrucao -> inst_rename ; .)
+    $end            reduce using rule 7 (instrucao -> inst_rename ; .)
+    END             reduce using rule 7 (instrucao -> inst_rename ; .)
+
+
+state 27
+
+    (8) instrucao -> inst_print ; .
+
+    IMPORT          reduce using rule 8 (instrucao -> inst_print ; .)
+    EXPORT          reduce using rule 8 (instrucao -> inst_print ; .)
+    DISCARD         reduce using rule 8 (instrucao -> inst_print ; .)
+    RENAME          reduce using rule 8 (instrucao -> inst_print ; .)
+    PRINT           reduce using rule 8 (instrucao -> inst_print ; .)
+    SELECT          reduce using rule 8 (instrucao -> inst_print ; .)
+    CREATE          reduce using rule 8 (instrucao -> inst_print ; .)
+    PROCEDURE       reduce using rule 8 (instrucao -> inst_print ; .)
+    CALL            reduce using rule 8 (instrucao -> inst_print ; .)
+    $end            reduce using rule 8 (instrucao -> inst_print ; .)
+    END             reduce using rule 8 (instrucao -> inst_print ; .)
+
+
+state 28
+
+    (9) instrucao -> inst_select ; .
+
+    IMPORT          reduce using rule 9 (instrucao -> inst_select ; .)
+    EXPORT          reduce using rule 9 (instrucao -> inst_select ; .)
+    DISCARD         reduce using rule 9 (instrucao -> inst_select ; .)
+    RENAME          reduce using rule 9 (instrucao -> inst_select ; .)
+    PRINT           reduce using rule 9 (instrucao -> inst_select ; .)
+    SELECT          reduce using rule 9 (instrucao -> inst_select ; .)
+    CREATE          reduce using rule 9 (instrucao -> inst_select ; .)
+    PROCEDURE       reduce using rule 9 (instrucao -> inst_select ; .)
+    CALL            reduce using rule 9 (instrucao -> inst_select ; .)
+    $end            reduce using rule 9 (instrucao -> inst_select ; .)
+    END             reduce using rule 9 (instrucao -> inst_select ; .)
+
+
+state 29
+
+    (10) instrucao -> inst_create ; .
+
+    IMPORT          reduce using rule 10 (instrucao -> inst_create ; .)
+    EXPORT          reduce using rule 10 (instrucao -> inst_create ; .)
+    DISCARD         reduce using rule 10 (instrucao -> inst_create ; .)
+    RENAME          reduce using rule 10 (instrucao -> inst_create ; .)
+    PRINT           reduce using rule 10 (instrucao -> inst_create ; .)
+    SELECT          reduce using rule 10 (instrucao -> inst_create ; .)
+    CREATE          reduce using rule 10 (instrucao -> inst_create ; .)
+    PROCEDURE       reduce using rule 10 (instrucao -> inst_create ; .)
+    CALL            reduce using rule 10 (instrucao -> inst_create ; .)
+    $end            reduce using rule 10 (instrucao -> inst_create ; .)
+    END             reduce using rule 10 (instrucao -> inst_create ; .)
+
+
+state 30
+
+    (12) instrucao -> inst_call ; .
+
+    IMPORT          reduce using rule 12 (instrucao -> inst_call ; .)
+    EXPORT          reduce using rule 12 (instrucao -> inst_call ; .)
+    DISCARD         reduce using rule 12 (instrucao -> inst_call ; .)
+    RENAME          reduce using rule 12 (instrucao -> inst_call ; .)
+    PRINT           reduce using rule 12 (instrucao -> inst_call ; .)
+    SELECT          reduce using rule 12 (instrucao -> inst_call ; .)
+    CREATE          reduce using rule 12 (instrucao -> inst_call ; .)
+    PROCEDURE       reduce using rule 12 (instrucao -> inst_call ; .)
+    CALL            reduce using rule 12 (instrucao -> inst_call ; .)
+    $end            reduce using rule 12 (instrucao -> inst_call ; .)
+    END             reduce using rule 12 (instrucao -> inst_call ; .)
+
+
+state 31
+
+    (13) inst_import -> IMPORT TABLE . ID FROM STRING
+
+    ID              shift and go to state 43
+
+
+state 32
+
+    (14) inst_export -> EXPORT TABLE . ID AS STRING
+
+    ID              shift and go to state 44
+
+
+state 33
+
+    (15) inst_discard -> DISCARD TABLE . ID
+
+    ID              shift and go to state 45
+
+
+state 34
+
+    (16) inst_rename -> RENAME TABLE . ID ID
+
+    ID              shift and go to state 46
+
+
+state 35
+
+    (17) inst_print -> PRINT TABLE . ID
+
+    ID              shift and go to state 47
+
+
+state 36
+
+    (18) inst_select -> SELECT list_select . FROM ID opt_where opt_limit
+
+    FROM            shift and go to state 48
+
+
+state 37
+
+    (22) list_column -> ID .
+
+    ,               reduce using rule 22 (list_column -> ID .)
+    FROM            reduce using rule 22 (list_column -> ID .)
+
+
+state 38
+
+    (19) list_select -> * .
+
+    FROM            reduce using rule 19 (list_select -> * .)
+
+
+state 39
+
+    (20) list_select -> list_column .
+    (21) list_column -> list_column . , ID
+
+    FROM            reduce using rule 20 (list_select -> list_column .)
+    ,               shift and go to state 49
+
+
+state 40
+
+    (35) inst_create -> CREATE TABLE . ID inst_select
+    (36) inst_create -> CREATE TABLE . ID FROM ID JOIN ID USING ( ID )
+
+    ID              shift and go to state 50
+
+
+state 41
+
+    (38) inst_procedure -> PROCEDURE ID . DO instrucoes END
+
+    DO              shift and go to state 51
+
+
+state 42
+
+    (39) inst_call -> CALL ID .
+
+    ;               reduce using rule 39 (inst_call -> CALL ID .)
+
+
+state 43
+
+    (13) inst_import -> IMPORT TABLE ID . FROM STRING
+
+    FROM            shift and go to state 52
+
+
+state 44
+
+    (14) inst_export -> EXPORT TABLE ID . AS STRING
+
+    AS              shift and go to state 53
+
+
+state 45
+
+    (15) inst_discard -> DISCARD TABLE ID .
+
+    ;               reduce using rule 15 (inst_discard -> DISCARD TABLE ID .)
+
+
+state 46
+
+    (16) inst_rename -> RENAME TABLE ID . ID
+
+    ID              shift and go to state 54
+
+
+state 47
+
+    (17) inst_print -> PRINT TABLE ID .
+
+    ;               reduce using rule 17 (inst_print -> PRINT TABLE ID .)
+
+
+state 48
+
+    (18) inst_select -> SELECT list_select FROM . ID opt_where opt_limit
+
+    ID              shift and go to state 55
+
+
+state 49
+
+    (21) list_column -> list_column , . ID
+
+    ID              shift and go to state 56
+
+
+state 50
+
+    (35) inst_create -> CREATE TABLE ID . inst_select
+    (36) inst_create -> CREATE TABLE ID . FROM ID JOIN ID USING ( ID )
+    (18) inst_select -> . SELECT list_select FROM ID opt_where opt_limit
+
+    FROM            shift and go to state 58
+    SELECT          shift and go to state 18
+
+    inst_select                    shift and go to state 57
+
+state 51
+
+    (38) inst_procedure -> PROCEDURE ID DO . instrucoes END
+    (2) instrucoes -> . instrucoes instrucao
+    (3) instrucoes -> . instrucao
+    (4) instrucao -> . inst_import ;
+    (5) instrucao -> . inst_export ;
+    (6) instrucao -> . inst_discard ;
+    (7) instrucao -> . inst_rename ;
+    (8) instrucao -> . inst_print ;
+    (9) instrucao -> . inst_select ;
+    (10) instrucao -> . inst_create ;
+    (11) instrucao -> . inst_procedure
+    (12) instrucao -> . inst_call ;
+    (13) inst_import -> . IMPORT TABLE ID FROM STRING
+    (14) inst_export -> . EXPORT TABLE ID AS STRING
+    (15) inst_discard -> . DISCARD TABLE ID
+    (16) inst_rename -> . RENAME TABLE ID ID
+    (17) inst_print -> . PRINT TABLE ID
+    (18) inst_select -> . SELECT list_select FROM ID opt_where opt_limit
+    (35) inst_create -> . CREATE TABLE ID inst_select
+    (36) inst_create -> . CREATE TABLE ID FROM ID JOIN ID USING ( ID )
+    (38) inst_procedure -> . PROCEDURE ID DO instrucoes END
+    (39) inst_call -> . CALL ID
+
+    IMPORT          shift and go to state 13
+    EXPORT          shift and go to state 14
+    DISCARD         shift and go to state 15
+    RENAME          shift and go to state 16
+    PRINT           shift and go to state 17
+    SELECT          shift and go to state 18
+    CREATE          shift and go to state 19
+    PROCEDURE       shift and go to state 20
+    CALL            shift and go to state 21
+
+    instrucoes                     shift and go to state 59
+    instrucao                      shift and go to state 3
+    inst_import                    shift and go to state 4
+    inst_export                    shift and go to state 5
+    inst_discard                   shift and go to state 6
+    inst_rename                    shift and go to state 7
+    inst_print                     shift and go to state 8
+    inst_select                    shift and go to state 9
+    inst_create                    shift and go to state 10
+    inst_procedure                 shift and go to state 11
+    inst_call                      shift and go to state 12
+
+state 52
+
+    (13) inst_import -> IMPORT TABLE ID FROM . STRING
+
+    STRING          shift and go to state 60
+
+
+state 53
+
+    (14) inst_export -> EXPORT TABLE ID AS . STRING
+
+    STRING          shift and go to state 61
+
+
+state 54
+
+    (16) inst_rename -> RENAME TABLE ID ID .
+
+    ;               reduce using rule 16 (inst_rename -> RENAME TABLE ID ID .)
+
+
+state 55
+
+    (18) inst_select -> SELECT list_select FROM ID . opt_where opt_limit
+    (23) opt_where -> . WHERE condicao
+    (24) opt_where -> . empty
+    (40) empty -> .
+
+    WHERE           shift and go to state 63
+    LIMIT           reduce using rule 40 (empty -> .)
+    ;               reduce using rule 40 (empty -> .)
+
+    opt_where                      shift and go to state 62
+    empty                          shift and go to state 64
+
+state 56
+
+    (21) list_column -> list_column , ID .
+
+    ,               reduce using rule 21 (list_column -> list_column , ID .)
+    FROM            reduce using rule 21 (list_column -> list_column , ID .)
+
+
+state 57
+
+    (35) inst_create -> CREATE TABLE ID inst_select .
+
+    ;               reduce using rule 35 (inst_create -> CREATE TABLE ID inst_select .)
+
+
+state 58
+
+    (36) inst_create -> CREATE TABLE ID FROM . ID JOIN ID USING ( ID )
+
+    ID              shift and go to state 65
+
+
+state 59
+
+    (38) inst_procedure -> PROCEDURE ID DO instrucoes . END
+    (2) instrucoes -> instrucoes . instrucao
+    (4) instrucao -> . inst_import ;
+    (5) instrucao -> . inst_export ;
+    (6) instrucao -> . inst_discard ;
+    (7) instrucao -> . inst_rename ;
+    (8) instrucao -> . inst_print ;
+    (9) instrucao -> . inst_select ;
+    (10) instrucao -> . inst_create ;
+    (11) instrucao -> . inst_procedure
+    (12) instrucao -> . inst_call ;
+    (13) inst_import -> . IMPORT TABLE ID FROM STRING
+    (14) inst_export -> . EXPORT TABLE ID AS STRING
+    (15) inst_discard -> . DISCARD TABLE ID
+    (16) inst_rename -> . RENAME TABLE ID ID
+    (17) inst_print -> . PRINT TABLE ID
+    (18) inst_select -> . SELECT list_select FROM ID opt_where opt_limit
+    (35) inst_create -> . CREATE TABLE ID inst_select
+    (36) inst_create -> . CREATE TABLE ID FROM ID JOIN ID USING ( ID )
+    (38) inst_procedure -> . PROCEDURE ID DO instrucoes END
+    (39) inst_call -> . CALL ID
+
+    END             shift and go to state 66
+    IMPORT          shift and go to state 13
+    EXPORT          shift and go to state 14
+    DISCARD         shift and go to state 15
+    RENAME          shift and go to state 16
+    PRINT           shift and go to state 17
+    SELECT          shift and go to state 18
+    CREATE          shift and go to state 19
+    PROCEDURE       shift and go to state 20
+    CALL            shift and go to state 21
+
+    instrucao                      shift and go to state 22
+    inst_import                    shift and go to state 4
+    inst_export                    shift and go to state 5
+    inst_discard                   shift and go to state 6
+    inst_rename                    shift and go to state 7
+    inst_print                     shift and go to state 8
+    inst_select                    shift and go to state 9
+    inst_create                    shift and go to state 10
+    inst_procedure                 shift and go to state 11
+    inst_call                      shift and go to state 12
+
+state 60
+
+    (13) inst_import -> IMPORT TABLE ID FROM STRING .
+
+    ;               reduce using rule 13 (inst_import -> IMPORT TABLE ID FROM STRING .)
+
+
+state 61
+
+    (14) inst_export -> EXPORT TABLE ID AS STRING .
+
+    ;               reduce using rule 14 (inst_export -> EXPORT TABLE ID AS STRING .)
+
+
+state 62
+
+    (18) inst_select -> SELECT list_select FROM ID opt_where . opt_limit
+    (25) opt_limit -> . LIMIT NUMBER
+    (26) opt_limit -> . empty
+    (40) empty -> .
+
+    LIMIT           shift and go to state 68
+    ;               reduce using rule 40 (empty -> .)
+
+    opt_limit                      shift and go to state 67
+    empty                          shift and go to state 69
+
+state 63
+
+    (23) opt_where -> WHERE . condicao
+    (27) condicao -> . ID op NUMBER
+    (28) condicao -> . condicao AND condicao
+
+    ID              shift and go to state 71
+
+    condicao                       shift and go to state 70
+
+state 64
+
+    (24) opt_where -> empty .
+
+    LIMIT           reduce using rule 24 (opt_where -> empty .)
+    ;               reduce using rule 24 (opt_where -> empty .)
+
+
+state 65
+
+    (36) inst_create -> CREATE TABLE ID FROM ID . JOIN ID USING ( ID )
+
+    JOIN            shift and go to state 72
+
+
+state 66
+
+    (38) inst_procedure -> PROCEDURE ID DO instrucoes END .
+
+    IMPORT          reduce using rule 38 (inst_procedure -> PROCEDURE ID DO instrucoes END .)
+    EXPORT          reduce using rule 38 (inst_procedure -> PROCEDURE ID DO instrucoes END .)
+    DISCARD         reduce using rule 38 (inst_procedure -> PROCEDURE ID DO instrucoes END .)
+    RENAME          reduce using rule 38 (inst_procedure -> PROCEDURE ID DO instrucoes END .)
+    PRINT           reduce using rule 38 (inst_procedure -> PROCEDURE ID DO instrucoes END .)
+    SELECT          reduce using rule 38 (inst_procedure -> PROCEDURE ID DO instrucoes END .)
+    CREATE          reduce using rule 38 (inst_procedure -> PROCEDURE ID DO instrucoes END .)
+    PROCEDURE       reduce using rule 38 (inst_procedure -> PROCEDURE ID DO instrucoes END .)
+    CALL            reduce using rule 38 (inst_procedure -> PROCEDURE ID DO instrucoes END .)
+    $end            reduce using rule 38 (inst_procedure -> PROCEDURE ID DO instrucoes END .)
+    END             reduce using rule 38 (inst_procedure -> PROCEDURE ID DO instrucoes END .)
+
+
+state 67
+
+    (18) inst_select -> SELECT list_select FROM ID opt_where opt_limit .
+
+    ;               reduce using rule 18 (inst_select -> SELECT list_select FROM ID opt_where opt_limit .)
+
+
+state 68
+
+    (25) opt_limit -> LIMIT . NUMBER
+
+    NUMBER          shift and go to state 73
+
+
+state 69
+
+    (26) opt_limit -> empty .
+
+    ;               reduce using rule 26 (opt_limit -> empty .)
+
+
+state 70
+
+    (23) opt_where -> WHERE condicao .
+    (28) condicao -> condicao . AND condicao
+
+    LIMIT           reduce using rule 23 (opt_where -> WHERE condicao .)
+    ;               reduce using rule 23 (opt_where -> WHERE condicao .)
+    AND             shift and go to state 74
+
+
+state 71
+
+    (27) condicao -> ID . op NUMBER
+    (29) op -> . =
+    (30) op -> . NE
+    (31) op -> . <
+    (32) op -> . >
+    (33) op -> . LE
+    (34) op -> . GE
+
+    =               shift and go to state 76
+    NE              shift and go to state 77
+    <               shift and go to state 78
+    >               shift and go to state 79
+    LE              shift and go to state 80
+    GE              shift and go to state 81
+
+    op                             shift and go to state 75
+
+state 72
+
+    (36) inst_create -> CREATE TABLE ID FROM ID JOIN . ID USING ( ID )
+
+    ID              shift and go to state 82
+
+
+state 73
+
+    (25) opt_limit -> LIMIT NUMBER .
+
+    ;               reduce using rule 25 (opt_limit -> LIMIT NUMBER .)
+
+
+state 74
+
+    (28) condicao -> condicao AND . condicao
+    (27) condicao -> . ID op NUMBER
+    (28) condicao -> . condicao AND condicao
+
+    ID              shift and go to state 71
+
+    condicao                       shift and go to state 83
+
+state 75
+
+    (27) condicao -> ID op . NUMBER
+
+    NUMBER          shift and go to state 84
+
+
+state 76
+
+    (29) op -> = .
+
+    NUMBER          reduce using rule 29 (op -> = .)
+
+
+state 77
+
+    (30) op -> NE .
+
+    NUMBER          reduce using rule 30 (op -> NE .)
+
+
+state 78
+
+    (31) op -> < .
+
+    NUMBER          reduce using rule 31 (op -> < .)
+
+
+state 79
+
+    (32) op -> > .
+
+    NUMBER          reduce using rule 32 (op -> > .)
+
+
+state 80
+
+    (33) op -> LE .
+
+    NUMBER          reduce using rule 33 (op -> LE .)
+
+
+state 81
+
+    (34) op -> GE .
+
+    NUMBER          reduce using rule 34 (op -> GE .)
+
+
+state 82
+
+    (36) inst_create -> CREATE TABLE ID FROM ID JOIN ID . USING ( ID )
+
+    USING           shift and go to state 85
+
+
+state 83
+
+    (28) condicao -> condicao AND condicao .
+    (28) condicao -> condicao . AND condicao
+
+  ! shift/reduce conflict for AND resolved as shift
+    LIMIT           reduce using rule 28 (condicao -> condicao AND condicao .)
+    ;               reduce using rule 28 (condicao -> condicao AND condicao .)
+    AND             shift and go to state 74
+
+  ! AND             [ reduce using rule 28 (condicao -> condicao AND condicao .) ]
+
+
+state 84
+
+    (27) condicao -> ID op NUMBER .
+
+    AND             reduce using rule 27 (condicao -> ID op NUMBER .)
+    LIMIT           reduce using rule 27 (condicao -> ID op NUMBER .)
+    ;               reduce using rule 27 (condicao -> ID op NUMBER .)
+
+
+state 85
+
+    (36) inst_create -> CREATE TABLE ID FROM ID JOIN ID USING . ( ID )
+
+    (               shift and go to state 86
+
+
+state 86
+
+    (36) inst_create -> CREATE TABLE ID FROM ID JOIN ID USING ( . ID )
+
+    ID              shift and go to state 87
+
+
+state 87
+
+    (36) inst_create -> CREATE TABLE ID FROM ID JOIN ID USING ( ID . )
+
+    )               shift and go to state 88
+
+
+state 88
+
+    (36) inst_create -> CREATE TABLE ID FROM ID JOIN ID USING ( ID ) .
+
+    ;               reduce using rule 36 (inst_create -> CREATE TABLE ID FROM ID JOIN ID USING ( ID ) .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for AND in state 83 resolved as shift
