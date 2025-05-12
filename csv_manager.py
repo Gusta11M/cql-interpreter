@@ -1,9 +1,18 @@
 #csv_manager.py
 import csv
 import ast
+import os
+from pathlib import Path
+
+INPUT_FOLDER = "data"
 
 def load_csv(filename):
-    with open(filename, 'r', encoding='utf-8') as f:
+    filename = Path(filename)
+    if(filename.parent == Path('.')):
+        filepath = os.path.join(INPUT_FOLDER, filename)
+    else: 
+        filepath = filename
+    with open(filepath, 'r', encoding='utf-8') as f:
         reader = csv.reader(f)
         columns = next(reader)  # Obtém a primeira linha como cabeçalhos
         columns = [col.strip() for col in columns]  # Remove espaços extras dos nomes das colunas
@@ -25,7 +34,12 @@ def load_csv(filename):
     return {'columns': columns, 'rows': rows}
 
 def save_csv(data, filename):
-    with open(filename, 'w', newline='', encoding='utf-8') as f:
+    filename = Path(filename)
+    if(filename.parent == Path('.')):
+        filepath = os.path.join(INPUT_FOLDER, filename)
+    else: 
+        filepath = filename
+    with open(filepath, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
         writer.writerow(data['columns'])
         for row in data['rows']:
