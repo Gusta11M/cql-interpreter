@@ -1,44 +1,70 @@
-# CQL Interpreter — A Custom Query Language Processor
+# ⚙️ CQL Interpreter — A Custom Query Language Processor
 
-## Overview
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![PLY](https://img.shields.io/badge/PLY-Lex%20%26%20Yacc-green?style=for-the-badge)
+![CSV](https://img.shields.io/badge/Data-CSV-blue?style=for-the-badge&logo=filezilla&logoColor=white)
+![CLI](https://img.shields.io/badge/Interface-Command%20Line-ff69b4?style=for-the-badge)
+![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)
 
-This project implements a fully functional interpreter for a Custom Query Language (CQL), designed to perform SQL-like operations on CSV data files. Developed in Python, the interpreter supports commands such as import, export, select, join, and procedural programming constructs, enabling flexible data manipulation and querying.
+---
 
-The interpreter includes:
-- Lexical analysis and parsing via PLY (Python Lex-Yacc).
-- Abstract Syntax Tree (AST) evaluation with support for custom procedures.
-- CSV file loading, saving, and transformation.
-- Command-line interface with both batch file execution and interactive modes.
+## 📄 Overview
 
-## Features
+This project implements a fully functional interpreter for a **Custom Query Language (CQL)**, designed to perform SQL-like operations on `.csv` data files.  
+Developed in Python, it supports commands such as:
 
-- Import and export CSV tables.
-- Select columns with filtering conditions and limits.
-- Create new tables from select queries or join operations.
-- Define and call custom procedures.
-- Interactive shell for real-time query execution.
-- Error handling and syntax validation.
+- `IMPORT`, `EXPORT`, `SELECT`, `JOIN`
+- Custom procedure definitions
+- Batch or interactive execution
 
-## Technologies Used
+Includes:
 
-- Python 3.x
-- PLY (Python Lex-Yacc) for lexical analysis and parsing
-- Standard Python libraries: csv, ast, pathlib, os, sys
+- Lexical analysis and parsing via **PLY**
+- AST-based evaluation
+- CLI for scripting and REPL
+- Robust error handling and syntax validation
 
-## Getting Started
+---
 
-### Prerequisites
+## ✨ Features
 
-- Python 3.6 or higher
-- pip package manager
+✅ Import and export CSV tables  
+✅ Select columns with filtering and limits  
+✅ JOIN multiple CSV tables  
+✅ Create and call **custom procedures**  
+✅ Interactive mode for on-the-fly testing  
+✅ Full error feedback with line reporting
 
-### Installation
+---
+
+## 🛠️ Technologies Used
+
+- 🐍 Python 3.x
+- 🧠 [PLY (Python Lex-Yacc)](https://www.dabeaz.com/ply/)
+- 📁 Python CSV, AST, Pathlib, OS, Sys (standard libraries)
+
+---
+
+## 🚀 Getting Started
+
+### ✅ Prerequisites
+
+- Python 3.6+
+- pip (Python package installer)
+
+### 📦 Installation
 
 1. Create and activate a virtual environment (recommended):
 
+**Linux/macOS** 
 ```bash
-python -m venv venv
-source venv/bin/activate   # On Windows use: venv\Scripts\activate
+python -m venv venv  
+source venv/bin/activate  
+```
+**Windows**  
+```bash
+python -m venv venv  
+venv\Scripts\activate
 ```
 
 2. Install dependencies:
@@ -46,26 +72,28 @@ source venv/bin/activate   # On Windows use: venv\Scripts\activate
 ```bash
 pip install -r requirements.txt
 ```
+---
 
-## Usage
+## 🧪 Usage
 
-- To run the interpreter in file mode:
-
+➡️ To run the interpreter with a CQL file:
 ```bash
-python main.py path/to/your/script.cql
-# or
-python main.py script.cql # if script.cql is inside input folder
+python main.py path/to/your/script.cql  
+# or 
+python main.py script.cql *(if file is in `input/` folder)*
 ```
 
-- To use the interactive mode, simply run:
+➡️ To enter interactive mode:
 
 ```bash
 python main.py
 ```
+Then enter CQL commands ending with `;`, referencing `.csv` files in quotes (`"filename.csv"`).  
+If the file is in the `data/` folder, you can just use the name.
 
-Then enter commands terminated with a semicolon (;), calling files .csv bettween (" "), with the full path or just the name, if the file is inside data folder.
+---
 
-## Project Structure
+## 📁 Project Structure
 
 ```bash
 cql-interpreter/
@@ -90,23 +118,30 @@ cql-interpreter/
 └── requirements.txt
 ```
 
-## Collaboration and Contributions
+---
 
-This project was developed as a group assignment in an academic environment.
-Please note that although the repository is hosted under the GitHub account [Gusta11M](https://github.com/Gusta11M), the contributions registered under the GitHub account [GustaM11](https://github.com/GustaM11) were made by me (the same person), using a separate school-associated account.
+## 🤝 Collaboration & Contributions
 
-## Skills Demonstrated
+This project was developed in a **group setting** as part of an academic course.
 
-- Language design and implementation (custom query language).
-- Lexical analysis and parsing with PLY.
-- AST construction and evaluation.
-- File I/O and data manipulation in Python.
-- Procedural programming and control flow implementation.
-- Development of command-line interfaces (CLI).
-- Team collaboration and version control practices.
+ℹ️ Although the repository is hosted under [Gusta11M](https://github.com/Gusta11M), the commits from [GustaM11](https://github.com/GustaM11) represent the same person — using a separate school GitHub account.
 
-## License
+---
 
-[MIT License](LICENSE)
+## 🧠 Skills Demonstrated
+
+- 🏗️ Language design (custom query language)  
+- 📚 Lexical parsing and grammar with PLY  
+- 🌲 AST construction and evaluation  
+- 🧪 File I/O and CSV data manipulation  
+- 🧵 Procedural control flow (e.g., loops, blocks)  
+- 🖥️ Command-line interface (CLI) development  
+- 🤝 Git/GitHub collaboration in team-based environment
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE)
 
 ---
