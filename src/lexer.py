@@ -1,7 +1,7 @@
-#lexer.py
+# lexer.py
 import ply.lex as lex
 
-# Lista de tokens
+# Reserved keywords in the language
 reserved = {
     'import': 'IMPORT',
     'export': 'EXPORT',
@@ -24,47 +24,57 @@ reserved = {
     'as': 'AS'
 }
 
+# List of token names recognized by the lexer
 tokens = ['ID', 'NUMBER', 'STRING', 'LE', 'GE', 'NE'] + list(reserved.values())
 
+# Single-character literals (operators, delimiters)
 literals = ['(', ')', '=', '<', '>', ';', ',', '*', '.']
 
-t_LE = r'<='
-t_GE = r'>='
-t_NE = r'<>'
+# Token definitions using regular expressions
+t_LE = r'<='            # Less than or equal
+t_GE = r'>='            # Greater than or equal
+t_NE = r'<>'            # Not equal
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
+    # Check if the identifier is a reserved word
     t.type = reserved.get(t.value.lower(), 'ID')
     return t
+
 def t_STRING(t):
     r'"([^\"]|\\")*"'
+    # Remove the surrounding quotes
     t.value = t.value[1:-1]
     return t
 
 def t_NUMBER(t):
     r'-?\d+(\.\d+)?'
+    # Convert string to float if it contains a decimal point, otherwise to int
     t.value = float(t.value) if '.' in t.value else int(t.value)
     return t
 
-# Comentários de uma linha (ignorar o resto da linha)
+# Single-line comment: ignore everything after '--' on the line
 def t_COMMENT_LINE(t):
     r'\-\-.*'
-    pass  # Simplesmente ignora
+    pass  # Ignore the comment
 
-# Comentários de múltiplas linhas (ignorar tudo entre {- e -})
+# Multi-line comment: ignore everything between '{-' and '-}'
 def t_COMMENT_BLOCK(t):
     r'\{\-([\s\S]*?)\-\}'
-    pass  # Também apenas ignora
+    pass  # Ignore the comment block
 
-
+# Characters to ignore (spaces, tabs, carriage returns)
 t_ignore = ' \t\r'
 
+# Track line numbers for error reporting
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
+# Error handling for invalid characters
 def t_error(t):
-    print(f"Caracter inválido: {t.value[0]}")
+    print(f"Invalid character: {t.value[0]}")
     t.lexer.skip(1)
 
+# Build the lexer
 lexer = lex.lex()

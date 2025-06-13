@@ -1,58 +1,64 @@
-#csv_manager.py
 import csv
 import ast
 import os
 from pathlib import Path
 
-INPUT_FOLDER = "data"
+# Default folder to look for input CSV files
+INPUT_FOLDER = "..\\data"
 
 def load_csv(filename):
     filename = Path(filename)
+    # If filename does not specify a folder, prepend the INPUT_FOLDER path
     if(filename.parent == Path('.')):
         filepath = os.path.join(INPUT_FOLDER, filename)
     else: 
         filepath = filename
+
     with open(filepath, 'r', encoding='utf-8') as f:
         reader = csv.reader(f)
-        columns = next(reader)  # Obtém a primeira linha como cabeçalhos
-        columns = [col.strip() for col in columns]  # Remove espaços extras dos nomes das colunas
+        columns = next(reader)  # Get the first row as column headers
+        columns = [col.strip() for col in columns]  # Strip extra whitespace from column names
         rows = []
 
         for row in reader:
-            # Ignora linhas de comentário (que começam por '#')
+            # Skip comment lines (starting with '#')
             if not row or row[0].strip().startswith('#'):
                 continue
-            # Ignora linhas vazias
+            # Skip empty lines
             if all(cell.strip() == '' for cell in row):
                 continue
-            # Verifica se o número de colunas corresponde ao numero de colunas
+            # Skip rows where the number of columns doesn't match the header count
             if len(row) != len(columns):
                 continue
+
+            # Parse each cell value in the row
             rows.append([parse_value(cell.strip()) for cell in row])
 
-        
     return {'columns': columns, 'rows': rows}
 
 def save_csv(data, filename):
     filename = Path(filename)
+    # If filename does not specify a folder, prepend the INPUT_FOLDER path
     if(filename.parent == Path('.')):
         filepath = os.path.join(INPUT_FOLDER, filename)
     else: 
         filepath = filename
+
     with open(filepath, 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
-        writer.writerow(data['columns'])
+        writer.writerow(data['columns'])  # Write the column headers
         for row in data['rows']:
-            writer.writerow(row)
+            writer.writerow(row)  # Write each data row
 
 def parse_value(val):
     try:
-        # Tenta interpretar como uma lista (coordenadas)
+        # Try to interpret the value as a list (e.g., coordinates)
         if val.startswith('[') and val.endswith(']'):
-            return ast.literal_eval(val)  # Converte para lista de floats
-        # Tenta converter para float ou int
+            return ast.literal_eval(val)  # Convert to list of floats or ints
+        # Try to convert to float or int
         if '.' in val:
             return float(val)
         return int(val)
     except (ValueError, SyntaxError):
-        return val  # Retorna o valor como string caso não consiga converter
+        # Return as string if conversion fails
+        return val

@@ -1,0 +1,8 @@
+StationCode,StationName,Altitude,Type
+M1,Bragança - Aerodrome,674,Automatic
+M2,Porto - Serra do Pilar,92,Conventional
+M3,"Lisboa, Gago Coutinho",105,Automatic
+#Station temporarily deactivated
+M4,Funchal - Observatory,58,Conventional
+M5,Porto,59
+ , , ,
